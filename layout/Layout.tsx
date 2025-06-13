@@ -1,5 +1,5 @@
-import { LayoutProps } from "./Layout.props";
-import styles from './Layout.module.css';
+import { LayoutProps } from "../app/Layout.props";
+import styles from '../app/Layout.module.css';
 import { JSX } from "react";
 import cn from 'classnames';
 import {SideBar} from "@/layout/SideBar/SideBar";

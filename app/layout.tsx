@@ -1,17 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import styles from "./page.module.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import styles from "./Layout.module.css";
+import {Header} from "@/layout/Header/Header";
+import {SideBar} from "@/layout/SideBar/SideBar";
+import {Footer} from "@/layout/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "Наш проект",
@@ -23,21 +15,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="ru">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-      <nav className={styles.nav}>
-        <ul>
-          <li>Курсы</li>
-          <li>Для детей</li>
-          <li>О нас</li>
-        </ul>
-
-
-      </nav>
-        {children}
-      </body>
-    </html>
+    return (
+        <html lang="ru">
+        <body>
+        <div className={styles.wrapper}>
+            <Header className={styles.header} />
+            <SideBar className={styles.sideBar} />
+            <div className={styles.body}>
+                {children}
+            </div>
+            <Footer className={styles.footer} />
+        </div>
+        </body>
+        </html>
   );
 }
 
