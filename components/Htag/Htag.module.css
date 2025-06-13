@@ -1,0 +1,57 @@
+.h1{
+    /*Курсы по фотошоп*/
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 35px;
+    margin: 0;
+    color: red;
+
+    /*position: absolute;*/
+    /*width: 261px;*/
+    /*height: 35px;*/
+    /*left: 287px;*/
+    /*top: 40px;*/
+
+    /*font-family: 'Noto Sans';*/
+    /*font-style: normal;*/
+
+}
+
+.h2 {
+    /*Преимущетсва*/
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 30px;
+    margin: 0;
+    color: #3B434E;
+
+    /*position: absolute;*/
+    /*width: 167px;*/
+    /*height: 30px;*/
+    /*left: 287px;*/
+    /*top: 1294px;*/
+
+    /*font-family: 'Noto Sans';*/
+    /*font-style: normal;*/
+}
+
+
+.h3 {
+    /* Профессия дизайнер от 0 до PRO */
+
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 27px;
+    margin: 0;
+    color: #3B434E;
+
+    /*position: absolute;*/
+    /*width: 409.26px;*/
+    /*height: 27px;*/
+    /*left: 412px;*/
+    /*top: 133px;*/
+
+    /*font-family: 'Noto Sans';*/
+    /*font-style: normal;*/
+
+}
