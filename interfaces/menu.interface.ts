@@ -22,3 +22,4 @@ export interface FirstLevelMenuItem {
     icon: JSX.Element;
     id: TopLevelCategory;
 }
+
