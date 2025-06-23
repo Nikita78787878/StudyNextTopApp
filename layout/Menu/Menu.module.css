@@ -36,12 +36,12 @@
     padding-left: 32px;
     border-left: 1px solid #DFDFDF;
 }
-.secondLevelBlockOpened:last-child {
+.secondLevelBlockOpen:last-child {
     margin-bottom: 20px;
 
 }
 
-.thridlevel{
+.thirdLevel{
     margin-bottom: 10px;
     display: block;
 
@@ -53,8 +53,8 @@
 
 }
 
-.thridlevelActive,
-.thridlevel:hover{
+.thirdLevelActive,
+.thirdLevel:hover{
     color: var(--primary)
 
 }

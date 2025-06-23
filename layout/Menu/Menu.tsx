@@ -1,82 +1,80 @@
-'use client'
-import {JSX, useContext} from "react";
-import {AppContext} from "@/context/app.context";
-import {FirstLevelMenuItem, PageItem} from "@/interfaces/menu.interface";
-import CoursesIcon from './icons/courses.svg'
-import ServiceIcon from './icons/services.svg'
-import ProductIcon from './icons/product.svg'
-import BooksIcon from './icons/books.svg'
-import {TopLevelCategory} from "@/interfaces/page.interface";
+import { getMenu } from '@/api/menu';
+import { FirstLevelMenuItem, PageItem } from '@/interfaces/menu.interface';
+import CoursesIcon from './icons/courses.svg';
+import ServicesIcon from './icons/services.svg';
+import BooksIcon from './icons/books.svg';
+import ProductsIcon from './icons/product.svg';
+import { TopLevelCategory } from '@/interfaces/page.interface';
 import styles from './Menu.module.css';
-import cn from "classnames";
-
+import cn from 'classnames';
 
 const firstLevelMenu: FirstLevelMenuItem[] = [
     {route: 'courses', name: 'Курсы', icon: <CoursesIcon/>, id: TopLevelCategory.Courses},
-    {route: 'services', name: 'Курсы', icon: <ServiceIcon/>, id: TopLevelCategory.Services},
-    {route: 'books', name: 'Курсы', icon: <ProductIcon/>, id: TopLevelCategory.Products},
-    {route: 'products', name: 'Курсы', icon: <BooksIcon/>, id: TopLevelCategory.Books}
+    {route: 'services', name: 'Сервисы', icon: <ServicesIcon/>, id: TopLevelCategory.Services},
+    {route: 'books', name: 'Книги', icon: <ProductsIcon/>, id: TopLevelCategory.Products},
+    {route: 'products', name: 'Товары', icon: <BooksIcon/>, id: TopLevelCategory.Books}
 ];
 
-export const Menu = (): JSX.Element => {
-    const { menu, setMenu, firstCategory} = useContext(AppContext);
+export default async function Menu() {
+    const firstCategory = TopLevelCategory.Courses;
+    const menu = await getMenu(firstCategory);
 
-    const buildFirstLevel = () => {
+    const buildFirstLevel = (firstCategory: TopLevelCategory) => {
         return (
             <>
-                {firstLevelMenu.map(m => (
-                    <div key={m.route}>
-                        <a href={`/${m.route}`}>
-                            <div className={cn(styles.firstLevel, {
-                                [styles.firstLevelActive]: m.id == firstCategory
-                            })}>
-                                {m.icon}
-                                <span>{m.name}</span>
+                {firstLevelMenu.map((menuItem) => (
+                    <div key={menuItem.route}>
+                        <a href={`/${menuItem.route}`}>
+                            <div
+                                className={cn(styles.firstLevel, {
+                                    [styles.firstLevelActive]: menuItem.id === firstCategory
+                                })}
+                            >
+                                {menuItem.icon}
+                                <span>{menuItem.name}</span>
                             </div>
                         </a>
-                        {m.id == firstCategory && buildSecondLevel(m)}
+                        {menuItem.id == firstCategory && buildSecondLevel(menuItem.route)}
                     </div>
                 ))}
             </>
         );
-    }
+    };
 
-    const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
+    const buildSecondLevel = (menuItemRoute: string) => {
         return (
             <div className={styles.secondBlock}>
-                {menu.map(m => (
-                    <div key={m._id.secondCategory}>
-                        <div className={styles.secondLevel}>{m._id.secondCategory}</div>
+                {menu.map((menuItem) => (
+                    <div key={menuItem._id.secondCategory}>
+                        <div className={styles.secondLevel}>{menuItem._id.secondCategory}</div>
                         <div className={cn(styles.secondLevelBlock, {
-                            [styles.secondLevelBlockOpened]: m.isOpened
-                        })}>
-                            {buildThridLevel(m.pages, menuItem.route)}
+                                [styles.secondLevelBlockOpen]: menuItem.isOpened,
+                            })}
+                        >
+                            {buildThirdLevel(menuItem.pages, menuItemRoute)}
                         </div>
                     </div>
                 ))}
             </div>
-        )
-    }
+        );
+    };
 
-    const buildThridLevel = (pages: PageItem[], route: string) => {
-        return(
-            pages.map(p => (
-                <a href={`/${route}/${p.alias}`} className={cn(styles.thridlevel, {
-                    [styles.thridlevelActive]: false
-                })}>
-                    {p.category}
-                </a>
-            ))
-        )
-    }
+    const buildThirdLevel = (pages: PageItem[], route: string) => {
+        return (
+            <>
+                {pages.map((page) => (
+                    <a  key={page._id}
+                        href={`/${route}/${page.alias}`}
+                        className={cn(styles.thirdLevel, {
+                            [styles.thirdLevelActive]: false,
+                        })}
+                    >
+                        {page.category}
+                    </a>
+                ))}
+            </>
+        );
+    };
 
-
-    return (
-        <div className={styles.menu}>
-            <ul>
-                {menu.map(m => (<li key={m._id.secondCategory}>{m._id.secondCategory}</li>))}
-            </ul>
-
-        </div>
-    );
-};
+    return <div className={styles.menu}>{buildFirstLevel(firstCategory)}</div>;
+}
