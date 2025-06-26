@@ -23,7 +23,7 @@ type PageParams = {
 };
 
 export default async function PageProduct({ params }: PageParams) {
-    await new Promise((res) => setTimeout(() => {res('')}, 3000));
+    // await new Promise((res) => setTimeout(() => {res('')}, 3000));
 
     const page = await getPage(params.alias);
     const firstCategory = 0;
