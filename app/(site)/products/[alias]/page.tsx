@@ -37,5 +37,4 @@ export default async function PageProduct({ params }: PageParams) {
         </AppContextProvider>
         )
 
-
 }

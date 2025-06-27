@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import styles from "./Layout.module.css";
-import {Header} from "@/layout/Header/Header";
-import {SideBar} from "@/layout/SideBar/SideBar";
-import {Footer} from "@/layout/Footer/Footer";
+import {Header} from "@/components/Header/Header";
+import {SideBar} from "@/components/SideBar/SideBar";
+import {Footer} from "@/components/Footer/Footer";
 import {getMenu} from "@/api/menu";
 import { AppContextProvider } from "@/context/app.context";
 

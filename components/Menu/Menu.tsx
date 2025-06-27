@@ -26,7 +26,6 @@ export default async function Menu() {
                 {firstLevelMenu.map((menuItem) => (
                     <div key={menuItem.route}>
                         <Link href={`/${menuItem.route}`}>
-
                                 <div
                                     className={cn(styles.firstLevel, {
                                         [styles.firstLevelActive]: menuItem.id === firstCategory
