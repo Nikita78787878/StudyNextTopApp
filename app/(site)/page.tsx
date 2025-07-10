@@ -1,5 +1,5 @@
 'use client'
-import {Button, Htag, P, Tag, TestUseClient, Rating, BadExample, GoodExample} from "../components";
+import {Button, Htag, P, Tag, TestUseClient, Rating, BadExample, GoodExample} from "../../components";
 import {JSX, useEffect, useState} from "react";
 
 

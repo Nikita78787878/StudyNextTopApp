@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 };
 //  Пример статичной реализации ну т.е SSG у нас то в next идёт SSR
 export async function generateStaticParams(): Promise<{ alias: string }[]> {
+    await new Promise((res) => setTimeout(() => {res('')}, 3000));
     const menu = await getMenu(0);
     return menu.flatMap(item =>
         item.pages.map(page => ({ alias: page.alias }))
@@ -22,6 +23,7 @@ type PageParams = {
 };
 
 export default async function PageProduct({ params }: PageParams) {
+    // await new Promise((res) => setTimeout(() => {res('')}, 3000));
 
     const page = await getPage(params.alias);
     const firstCategory = 0;
@@ -34,6 +36,5 @@ export default async function PageProduct({ params }: PageParams) {
             <div>{page.title}</div>;
         </AppContextProvider>
         )
-
 
 }
