@@ -2,7 +2,8 @@ import { Metadata } from "next";
 import { getPage } from "@/api/page";
 import { notFound } from "next/navigation";
 import { getMenu } from "@/api/menu";
-import { AppContextProvider } from "@/context/app.context";
+import {TopPageComponent} from "@/page-components";
+import {ProductModel} from "@/interfaces/product.interface";
 
 export const metadata: Metadata = {
     title: "Страница",
@@ -32,9 +33,7 @@ export default async function PageProduct({ params }: PageParams) {
     if (!page) notFound();
 
     return(
-        <AppContextProvider menu={menu} firstCategory={firstCategory}>
-            <div>{page.title}</div>;
-        </AppContextProvider>
+        <TopPageComponent firstCategory={page.firstCategory} page={page} products={products ?? []}/>
         )
 
 }
